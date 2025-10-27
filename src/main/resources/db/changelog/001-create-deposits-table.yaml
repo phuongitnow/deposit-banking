@@ -1,0 +1,84 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-deposits-table
+      author: banking-team
+      changes:
+        - createSequence:
+            sequenceName: deposit_sequence
+            startValue: 1
+            incrementBy: 1
+        
+        - createTable:
+            tableName: deposits
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              
+              - column:
+                  name: account_number
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              
+              - column:
+                  name: amount
+                  type: decimal(19,2)
+                  constraints:
+                    nullable: false
+              
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              
+              - column:
+                  name: currency
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              
+              - column:
+                  name: description
+                  type: varchar(500)
+                  constraints:
+                    nullable: true
+              
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+        
+        - createIndex:
+            indexName: idx_deposits_account_number
+            tableName: deposits
+            columns:
+              - column:
+                  name: account_number
+        
+        - createIndex:
+            indexName: idx_deposits_status
+            tableName: deposits
+            columns:
+              - column:
+                  name: status
+        
+        - createIndex:
+            indexName: idx_deposits_created_at
+            tableName: deposits
+            columns:
+              - column:
+                  name: created_at
+

@@ -1,0 +1,54 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+!README.md
+
+# IDE
+.idea
+.vscode
+*.iml
+*.iws
+*.ipr
+.settings
+.classpath
+.project
+
+# Build outputs
+build/
+.gradle/
+out/
+target/
+
+# Logs
+*.log
+logs/
+
+# Test results
+.gradle
+build/reports/
+build/test-results/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Gradle wrapper (we'll copy this explicitly)
+# gradlew
+# gradlew.bat
+# gradle/wrapper
+
