@@ -1,0 +1,163 @@
+{
+  "info": {
+    "name": "Banking Deposit API",
+    "description": "Complete test collection for Banking Deposit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "test"
+  },
+  "item": [
+    {
+      "name": "1. Create Deposit",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountNumber\": \"ACC123456789\",\n  \"amount\": 1000.00,\n  \"currency\": \"USD\",\n  \"description\": \"Initial deposit\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/deposits",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "deposits"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Get All Deposits",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/deposits?page=0&size=20",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "deposits"],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "20"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Get Deposit by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/deposits/{{deposit_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "deposits", "{{deposit_id}}"]
+        }
+      }
+    },
+    {
+      "name": "4. Get by Account Number",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/deposits/account/ACC123456789",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "deposits", "account", "ACC123456789"]
+        }
+      }
+    },
+    {
+      "name": "5. Update Deposit Status",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/deposits/{{deposit_id}}/status?status=COMPLETED",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "deposits", "{{deposit_id}}", "status"],
+          "query": [
+            {
+              "key": "status",
+              "value": "COMPLETED"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "6. Delete Deposit",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/deposits/{{deposit_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "deposits", "{{deposit_id}}"]
+        }
+      }
+    },
+    {
+      "name": "7. Validation Test - Invalid Account",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountNumber\": \"ABC\",\n  \"amount\": 100.00,\n  \"currency\": \"USD\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/deposits",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "deposits"]
+        }
+      }
+    },
+    {
+      "name": "8. Validation Test - Invalid Amount",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountNumber\": \"ACC123456789\",\n  \"amount\": -100.00,\n  \"currency\": \"USD\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/deposits",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "deposits"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "deposit_id",
+      "value": "1",
+      "type": "string"
+    }
+  ]
+}
+
